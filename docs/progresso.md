@@ -27,7 +27,10 @@ Prazo de entrega: **3 de novembro de 2026**.
 - [x] Testes pytest da API e do preditor (30 testes no total, com modelo sintético em pasta temporária)
 
 ## Etapa 4 — Documentação e Entrega
-- [ ] Model Card (`docs/model_card.md`)
-- [ ] README final (instalação, execução, API)
-- [ ] Vídeo STAR (5 min)
+- [x] Model Card com métricas, faixas, análise de vieses por grupo e calibração (`docs/model_card.md`)
+- [x] README final (problema, resultados, arquitetura, setup, API, limitações)
+- [x] `requirements.txt` com versões fixas + CI no GitHub Actions (lint + testes)
+- [x] Roteiro do vídeo STAR com falas, telas e tempos (`docs/roteiro_video_star.md`)
+- [ ] Gravar o vídeo STAR (5 min)
+- [ ] Publicar o repositório no GitHub
 - [ ] (Opcional) Deploy em nuvem
