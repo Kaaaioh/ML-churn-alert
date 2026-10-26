@@ -1,0 +1,6 @@
+# Normaliza quebras de linha: LF no repositório, independente do SO de quem clona
+* text=auto eol=lf
+*.png binary
+*.joblib binary
+*.pkl binary
+*.ipynb text eol=lf

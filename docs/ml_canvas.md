@@ -40,8 +40,19 @@ não ia sair) e recall (não deixar escapar quem vai sair). Complementar: **AUC-
 capacidade de ordenar clientes por risco independentemente do limiar de corte.
 
 **Negócio:** taxa de churn mensal da carteira abordada vs. não abordada; receita retida por campanha;
-custo da campanha / clientes retidos. Hipótese de trabalho: cada cliente retido vale ~12× a mensalidade
-média (≈ R$ 65) e cada abordagem custa ~R$ 10, então o modelo compensa mesmo com precision moderada.
+custo da campanha / clientes retidos.
+
+Premissas de custo usadas para ajustar o limiar de decisão (Etapa 2, `BusinessCosts`):
+
+| Premissa | Valor | Racional |
+|---|---|---|
+| Custo de abordar um cliente | R$ 20 | contato + desconto médio oferecido |
+| Valor de reter um cliente que ia sair | R$ 390 | ≈ 6 mensalidades de margem (mensalidade média ≈ R$ 65) |
+| Taxa de sucesso da abordagem | 30% | fração dos abordados em risco que de fato ficam |
+
+Ganho esperado por acerto = 0,30 × 390 − 20 = R$ 97; custo por falso alarme = R$ 20. Por isso vale abordar
+clientes com probabilidade bem abaixo de 50%, e o modelo compensa mesmo com precision moderada. Os valores são
+hipotéticos e devem ser substituídos pelos reais da operadora; o limiar é recalculado automaticamente.
 
 **Baseline a superar:** Regressão Logística com pré-processamento padrão (Etapa 1). Os modelos da
 Etapa 2 (Random Forest, MLP) precisam vencer o baseline em F1 com validação cruzada para virar campeão.

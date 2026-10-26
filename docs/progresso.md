@@ -13,11 +13,12 @@ Prazo de entrega: **3 de novembro de 2026**.
 - [x] Registro de experimentos iniciado (`docs/experimentos.md`)
 
 ## Etapa 2 — Modelagem e Avaliação
-- [ ] Random Forest (ou árvore de decisão)
-- [ ] MLPClassifier
-- [ ] Validação cruzada 5-fold para todos os modelos
-- [ ] Tabela comparativa Linear vs Árvore vs MLP
-- [ ] Modelo campeão escolhido e salvo em `models/`
+- [x] Random Forest (`RandomForestClassifier`, 300 árvores, `class_weight=balanced`)
+- [x] MLPClassifier (2 camadas ocultas, `early_stopping`)
+- [x] Validação cruzada 5-fold estratificada para os três modelos (`src/churn_alert/train.py`)
+- [x] Tabela comparativa Linear vs Árvore vs MLP (`notebooks/02_modelos.ipynb`, `docs/experimentos.md`)
+- [x] Modelo campeão escolhido por regra pré-definida e salvo em `models/champion.joblib` + `champion.json`
+- [x] Limiar de decisão ajustado por custo de negócio (`src/churn_alert/threshold.py`)
 
 ## Etapa 3 — Engenharia de Software e API
 - [ ] Módulo de predição em `src/` carregando o campeão
