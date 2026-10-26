@@ -21,9 +21,10 @@ Prazo de entrega: **3 de novembro de 2026**.
 - [x] Limiar de decisão ajustado por custo de negócio (`src/churn_alert/threshold.py`)
 
 ## Etapa 3 — Engenharia de Software e API
-- [ ] Módulo de predição em `src/` carregando o campeão
-- [ ] API FastAPI com `/health` e `/predict`
-- [ ] Testes pytest da API (status e predição)
+- [x] Módulo de predição em `src/churn_alert/predict.py` (carrega campeão + metadados, faixas de risco, ação sugerida)
+- [x] Schemas Pydantic com domínios validados (`src/churn_alert/schemas.py`)
+- [x] API FastAPI com `/health`, `/model`, `/predict` e `/predict/batch` (`src/churn_alert/api.py`)
+- [x] Testes pytest da API e do preditor (30 testes no total, com modelo sintético em pasta temporária)
 
 ## Etapa 4 — Documentação e Entrega
 - [ ] Model Card (`docs/model_card.md`)

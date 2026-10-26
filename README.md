@@ -6,7 +6,7 @@ Uma operadora de telecomunicações está perdendo clientes. Este projeto constr
 classifica clientes com risco de cancelamento (churn) e o serve via API REST, seguindo boas práticas de
 engenharia de software para ML.
 
-> Estado atual: **Etapa 2 concluída** (comparação de modelos e campeão salvo). Veja o checklist em [docs/progresso.md](docs/progresso.md).
+> Estado atual: **Etapa 3 concluída** (API de inferência funcional e testada). Veja o checklist em [docs/progresso.md](docs/progresso.md).
 
 ## Estrutura
 
@@ -45,7 +45,47 @@ pytest                                     # testes
 jupyter lab                                # abre os notebooks
 jupyter nbconvert --to notebook --execute notebooks/01_eda_baseline.ipynb --inplace   # reexecuta a EDA
 jupyter nbconvert --to notebook --execute notebooks/02_modelos.ipynb --inplace        # reexecuta a comparação
+uvicorn churn_alert.api:app --reload       # sobe a API em http://127.0.0.1:8000 (docs em /docs)
 ```
+
+## API de inferência
+
+| Método | Rota | O que faz |
+|---|---|---|
+| GET | `/health` | Status da API e se o modelo está carregado |
+| GET | `/model` | Metadados do campeão: nome, limiar, métricas, features |
+| POST | `/predict` | Predição para um cliente |
+| POST | `/predict/batch` | Predição para até 1.000 clientes |
+
+Exemplo:
+
+```bash
+curl -X POST http://127.0.0.1:8000/predict -H "Content-Type: application/json" -d '{
+  "gender": "Female", "SeniorCitizen": 0, "Partner": "No", "Dependents": "No", "tenure": 2,
+  "PhoneService": "Yes", "MultipleLines": "No", "InternetService": "Fiber optic",
+  "OnlineSecurity": "No", "OnlineBackup": "No", "DeviceProtection": "No", "TechSupport": "No",
+  "StreamingTV": "Yes", "StreamingMovies": "Yes", "Contract": "Month-to-month",
+  "PaperlessBilling": "Yes", "PaymentMethod": "Electronic check",
+  "MonthlyCharges": 95.7, "TotalCharges": 191.4
+}'
+```
+
+Resposta:
+
+```json
+{
+  "churn_probability": 0.893,
+  "churn_label": 1,
+  "risk_tier": "alto",
+  "suggested_action": "Contato proativo do time de retenção com oferta personalizada.",
+  "threshold": 0.33
+}
+```
+
+- A resposta vai além do sim/não: `risk_tier` (baixo, medio, alto) e `suggested_action` traduzem a probabilidade em decisão para o time de retenção. O corte baixo/medio é o limiar de negócio salvo em `models/champion.json`; o corte medio/alto é 0,60.
+- Entrada validada com Pydantic: categoria fora do domínio ou número negativo retorna `422` com a explicação, sem tocar no modelo.
+- O caminho do artefato pode ser trocado pela variável de ambiente `CHURN_ALERT_MODEL_PATH`.
+
 
 ## Etapa 1 — resumo
 
