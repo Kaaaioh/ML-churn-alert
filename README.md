@@ -176,7 +176,13 @@ ruff check src tests
 
 Projeto desenvolvido como Tech Challenge da Fase 1 da Pós-Tech em Machine Learning Engineering (FIAP),
 cobrindo as disciplinas de Ciclo de Vida de Projetos de ML, Fundamentos de Modelos de ML, Engenharia de
-Software para ML e APIs para Inferência. Roteiro da apresentação em [docs/roteiro_video_star.md](docs/roteiro_video_star.md).
+Software para ML e APIs para Inferência.
+
+## Apresentação
+
+Vídeo de 5 minutos no método STAR (Situation, Task, Action, Result):
+**[assistir no Google Drive](https://drive.google.com/file/d/1XblFPEkoEWeSexHgfQ0R8nKI4Lx1oFTM/view?usp=sharing)**.
+Roteiro e telas em [docs/roteiro_video_star.md](docs/roteiro_video_star.md).
 
 ## Autor
 

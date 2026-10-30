@@ -31,6 +31,6 @@ Prazo de entrega: **3 de novembro de 2026**.
 - [x] README final (problema, resultados, arquitetura, setup, API, limitações)
 - [x] `requirements.txt` com versões fixas + CI no GitHub Actions (lint + testes)
 - [x] Roteiro do vídeo STAR com falas, telas e tempos (`docs/roteiro_video_star.md`)
-- [ ] Gravar o vídeo STAR (5 min)
-- [ ] Publicar o repositório no GitHub
+- [x] Vídeo STAR gravado e publicado no Google Drive (link no README)
+- [x] Repositório publicado em https://github.com/Kaaaioh/ML-churn-alert (CI verde)
 - [ ] (Opcional) Deploy em nuvem
